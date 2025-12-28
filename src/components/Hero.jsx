@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Play, ArrowRight, BarChart3, Database } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -54,9 +55,9 @@ const Hero = () => {
                             transition={{ duration: 0.5, delay: 0.3 }}
                             className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
                         >
-                            <button className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-blue to-brand-teal text-brand-navy font-bold rounded-xl shadow-lg hover:shadow-brand-teal/20 hover:scale-105 transition-all flex items-center justify-center gap-2">
+                            <Link to="/app" className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-blue to-brand-teal text-brand-navy font-bold rounded-xl shadow-lg hover:shadow-brand-teal/20 hover:scale-105 transition-all flex items-center justify-center gap-2">
                                 Start For Free <ArrowRight className="w-5 h-5" />
-                            </button>
+                            </Link>
                             <button className="w-full sm:w-auto px-8 py-4 bg-white/5 text-brand-light border border-white/10 rounded-xl hover:bg-white/10 transition-all flex items-center justify-center gap-2">
                                 <Play className="w-5 h-5 fill-current" /> Watch Demo
                             </button>

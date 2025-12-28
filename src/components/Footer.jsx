@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Database, Github, Twitter, Linkedin } from 'lucide-react';
 
 const Footer = () => {
@@ -7,12 +8,12 @@ const Footer = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid md:grid-cols-4 gap-12 mb-12">
                     <div className="col-span-1 md:col-span-1">
-                        <a href="#" className="flex items-center space-x-2 mb-4">
+                        <Link to="/" className="flex items-center space-x-2 mb-4">
                             <Database className="w-5 h-5 text-brand-teal" />
                             <span className="text-xl font-bold text-brand-light tracking-tight">
                                 AnalystConnect
                             </span>
-                        </a>
+                        </Link>
                         <p className="text-brand-slate text-sm leading-relaxed">
                             Bridging the gap between certification and employment through simulated work experience.
                         </p>
@@ -22,8 +23,8 @@ const Footer = () => {
                         <h4 className="text-brand-light font-bold mb-4">Platform</h4>
                         <ul className="space-y-2 text-sm text-brand-slate">
                             <li><a href="#" className="hover:text-brand-teal transition-colors">Mentorship</a></li>
-                            <li><a href="#" className="hover:text-brand-teal transition-colors">Real Projects</a></li>
-                            <li><a href="#" className="hover:text-brand-teal transition-colors">SQL Gym</a></li>
+                            <li><Link to="/app/projects" className="hover:text-brand-teal transition-colors">Real Projects</Link></li>
+                            <li><Link to="/app/sql-gym" className="hover:text-brand-teal transition-colors">SQL Gym</Link></li>
                             <li><a href="#" className="hover:text-brand-teal transition-colors">For Business</a></li>
                         </ul>
                     </div>
@@ -32,7 +33,7 @@ const Footer = () => {
                         <h4 className="text-brand-light font-bold mb-4">Resources</h4>
                         <ul className="space-y-2 text-sm text-brand-slate">
                             <li><a href="#" className="hover:text-brand-teal transition-colors">Discord Community</a></li>
-                            <li><a href="#" className="hover:text-brand-teal transition-colors">Daily SQL Challenge</a></li>
+                            <li><Link to="/app/sql-gym" className="hover:text-brand-teal transition-colors">Daily SQL Challenge</Link></li>
                             <li><a href="#" className="hover:text-brand-teal transition-colors">Instructor Apply</a></li>
                             <li><a href="#" className="hover:text-brand-teal transition-colors">Career Guide</a></li>
                         </ul>

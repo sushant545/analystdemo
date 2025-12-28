@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Database, Menu, X } from 'lucide-react';
 
 const Navbar = () => {
@@ -17,9 +18,9 @@ const Navbar = () => {
                 </a>
 
                 <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                    <button type="button" className="text-brand-navy bg-brand-teal hover:bg-brand-teal/80 focus:ring-4 focus:outline-none focus:ring-brand-teal/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center hidden md:block transition-all transform hover:scale-105">
+                    <Link to="/app" className="text-brand-navy bg-brand-teal hover:bg-brand-teal/80 focus:ring-4 focus:outline-none focus:ring-brand-teal/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center hidden md:block transition-all transform hover:scale-105">
                         Start Your First Project
-                    </button>
+                    </Link>
 
                     <button
                         onClick={() => setIsOpen(!isOpen)}
@@ -37,10 +38,10 @@ const Navbar = () => {
                             <a href="#" className="block py-2 px-3 text-brand-slate hover:text-brand-teal transition-colors md:p-0">Mentorship</a>
                         </li>
                         <li>
-                            <a href="#" className="block py-2 px-3 text-brand-slate hover:text-brand-teal transition-colors md:p-0">Real Projects</a>
+                            <Link to="/app/projects" className="block py-2 px-3 text-brand-slate hover:text-brand-teal transition-colors md:p-0">Real Projects</Link>
                         </li>
                         <li>
-                            <a href="#" className="block py-2 px-3 text-brand-slate hover:text-brand-teal transition-colors md:p-0">SQL Gym</a>
+                            <Link to="/app/sql-gym" className="block py-2 px-3 text-brand-slate hover:text-brand-teal transition-colors md:p-0">SQL Gym</Link>
                         </li>
                         <li>
                             <a href="#" className="block py-2 px-3 text-brand-slate hover:text-brand-teal transition-colors md:p-0">For Business</a>
