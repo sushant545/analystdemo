@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { AuthProvider, useAuth } from './hooks/useAuth';
 
 // Landing Components
 import Navbar from './components/Navbar';
@@ -17,6 +18,12 @@ import SqlWorkspace from './pages/SqlWorkspace';
 import ProjectCatalog from './pages/ProjectCatalog';
 import ProjectWorkspace from './pages/ProjectWorkspace';
 
+// Auth Components
+import AuthLayout from './layouts/AuthLayout';
+import Login from './pages/auth/Login';
+import SignUp from './pages/auth/SignUp';
+import ForgotPassword from './pages/auth/ForgotPassword';
+
 const LandingPage = () => (
   <div className="min-h-screen bg-brand-navy text-brand-light selection:bg-brand-teal selection:text-brand-navy">
     <Navbar />
@@ -30,23 +37,51 @@ const LandingPage = () => (
   </div>
 );
 
+// Protected Route Wrapper
+const ProtectedRoute = ({ children }) => {
+  const { user } = useAuth();
+  const location = useLocation();
+
+  if (!user) {
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+
+  return children;
+};
+
 function App() {
   return (
     <Router>
-      <Routes>
-        {/* Public Routes */}
-        <Route path="/" element={<LandingPage />} />
+      <AuthProvider>
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<LandingPage />} />
 
-        {/* Application Routes */}
-        <Route path="/app" element={<AppLayout />}>
-          <Route index element={<Navigate to="/app/dashboard" replace />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="sql-gym" element={<SqlGymList />} />
-          <Route path="sql-gym/:id" element={<SqlWorkspace />} />
-          <Route path="projects" element={<ProjectCatalog />} />
-          <Route path="projects/:id/work" element={<ProjectWorkspace />} />
-        </Route>
-      </Routes>
+          {/* Auth Routes */}
+          <Route element={<AuthLayout />}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+          </Route>
+
+          {/* Application Routes (Protected) */}
+          <Route
+            path="/app"
+            element={
+              <ProtectedRoute>
+                <AppLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<Navigate to="/app/dashboard" replace />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="sql-gym" element={<SqlGymList />} />
+            <Route path="sql-gym/:id" element={<SqlWorkspace />} />
+            <Route path="projects" element={<ProjectCatalog />} />
+            <Route path="projects/:id/work" element={<ProjectWorkspace />} />
+          </Route>
+        </Routes>
+      </AuthProvider>
     </Router>
   );
 }
